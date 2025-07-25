@@ -17,6 +17,15 @@ import chameleonkmp.app.generated.resources.compose_multiplatform
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.koinInject
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.*
+import androidx.compose.ui.unit.dp
+import com.iafedoseev.chameleon.network.ApiService
+import com.iafedoseev.chameleon.network.Post
+import kotlinx.coroutines.launch
+import com.iafedoseev.chameleon.ui.NetworkDemo
 
 
 @Composable
@@ -34,12 +43,7 @@ fun App() {
                 Text("Click me!")
             }
             AnimatedVisibility(showContent) {
-                val greeting: Greeting = koinInject()
-                val greetingText = remember { greeting.greet() }
-                Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(painterResource(Res.drawable.compose_multiplatform), null)
-                    Text("Compose: $greetingText")
-                }
+                NetworkDemo()
             }
         }
     }

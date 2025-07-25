@@ -10,6 +10,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.composeHotReload)
+    alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -55,12 +56,17 @@ kotlin {
     
     sourceSets {
         val desktopMain by getting
+        val iosMain by creating
+        val wasmJsMain by getting
         
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
+            
+            // Ktor Android Engine
+            implementation(libs.ktor.client.okhttp)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -75,6 +81,15 @@ kotlin {
             // Koin for Dependency Injection
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
+            
+            // Ktor HTTP Client
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.content.negotiation)
+            implementation(libs.ktor.client.logging)
+            implementation(libs.ktor.serialization.kotlinx.json)
+            
+            // Kotlinx Serialization
+            implementation(libs.kotlinx.serialization.json)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -83,6 +98,19 @@ kotlin {
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutinesSwing)
+            
+            // Ktor Desktop Engine
+            implementation(libs.ktor.client.cio)
+        }
+        
+        iosMain.dependencies {
+            // Ktor iOS Engine
+            implementation(libs.ktor.client.darwin)
+        }
+        
+        wasmJsMain.dependencies {
+            // Ktor WASM Engine
+            implementation(libs.ktor.client.cio)
         }
     }
 }
