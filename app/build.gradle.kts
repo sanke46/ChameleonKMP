@@ -102,6 +102,12 @@ kotlin {
             // Room Database
             implementation(libs.room.runtime)
             implementation(libs.sqlite.bundled)
+            
+            // Images
+            implementation(libs.coil.compose)
+            
+            // Logging
+            implementation(libs.napier)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
