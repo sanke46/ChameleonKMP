@@ -3,7 +3,6 @@ package com.iafedoseev.chameleon.screens
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -42,28 +41,6 @@ object HomeTab : Tab {
     }
 }
 
-object UsersTab : Tab {
-    override val options: TabOptions
-        @Composable
-        get() {
-            val title = "Users"
-            val icon = rememberVectorPainter(Icons.Default.People)
-            
-            return remember {
-                TabOptions(
-                    index = 1u,
-                    title = title,
-                    icon = icon
-                )
-            }
-        }
-    
-    @Composable
-    override fun Content() {
-        UsersScreen().Content()
-    }
-}
-
 object NetworkTab : Tab {
     override val options: TabOptions
         @Composable
@@ -94,7 +71,6 @@ class MainScreen : Screen {
                 bottomBar = {
                     NavigationBar {
                         TabNavigationItem(HomeTab)
-                        TabNavigationItem(UsersTab)
                         TabNavigationItem(NetworkTab)
                     }
                 }
