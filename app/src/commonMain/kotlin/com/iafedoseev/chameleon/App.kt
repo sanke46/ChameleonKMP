@@ -7,7 +7,6 @@ import cafe.adriel.voyager.navigator.Navigator
 import cafe.adriel.voyager.transitions.SlideTransition
 import com.iafedoseev.chameleon.screens.MainScreen
 
-
 @Composable
 @Preview
 fun App() {
